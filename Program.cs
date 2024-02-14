@@ -34,7 +34,8 @@ namespace Counter
                 {
                     string name = Path.GetFileNameWithoutExtension(args[0]);
                     string[] lines = File.ReadAllLines(args[0]);
-                    int counter = lines.Sum(s => (s.Length - s.Replace(name, "").Length) / name.Length);
+                    string line = lines.Aggregate((r, s) => r + s);
+                    int counter = (line.Length - line.Replace(name, "").Length) / name.Length;
 
                     Console.WriteLine("found " + counter);
                 }          
